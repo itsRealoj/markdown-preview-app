@@ -5,30 +5,32 @@ class Markdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      markdown: [],
+      markdown: '',
     };
   }
 
-  handleChange() {
+  updateMarkdown = (markdown) => {
     this.setState({
-      markdown: [...this.state.markdown],
+      markdown,
     });
-  }
+  };
 
   render() {
     return (
       <div>
-        <FormGroup controlId='App'>
+        <FormGroup>
           <input
             placeholder='Enter Text'
             value={this.state.markdown}
-            onChange={this.handleChange.bind(this)}
+            onChange={(event) => this.updateMarkdown(event.target.value)}
           />
           <div></div>
         </FormGroup>
         <div>
           <h1>Markdown Output</h1>
-          <FormText>{this.state.markdown}</FormText>
+          <FormText>
+            <li>{this.state.markdown}</li>
+          </FormText>
         </div>
       </div>
     );
